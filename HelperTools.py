@@ -41,6 +41,9 @@ def ImageToTileset(source, dest):
 # explort multiple sizes of a source image
 def ImageToSizes(source, dest):
     print(f"Exporting {source}")
+    if len(listdir(join(dest, "maps"))) > 0:
+        print("Already exported")
+        return
     with Image(filename=source) as img:
         dim = (img.size[0] * 2, img.size[1] * 2)
         ind = 0
@@ -63,6 +66,9 @@ def ImageToSizes(source, dest):
 
 # split image into 256x256 sub-images
 def ImageToGrid(source, dest):
+    if len(listdir(dest)) > 0:
+        print("Already exported")
+        return
     with Image(filename=source) as img:
         i = 0
         for h in range(0, img.size[1], 256):
