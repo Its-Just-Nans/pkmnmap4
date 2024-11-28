@@ -118,6 +118,7 @@ def TranslateScale(s, x, y, w, h):
 
 if __name__ == "__main__":
     from multiprocessing import Pool
+    from sys import argv
 
     # https://golb.n4n5.dev/python
     def multi_process(my_func, my_args, num_processes=10):
@@ -141,5 +142,9 @@ if __name__ == "__main__":
         ]
         for one_map in sorted(listdir("maps"))
     ]
-
-    multi_process(wrapper_to_tileset, args, num_processes=4)
+    if len(argv) > 1:
+        multi_process(wrapper_to_tileset, args, num_processes=int(argv[1]))
+    else:
+        # single process - run in current process
+        for arg in args:
+            wrapper_to_tileset(arg)
