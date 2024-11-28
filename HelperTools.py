@@ -29,10 +29,9 @@ def ImageToTileset(source, dest):
         print("Creating grid for zoom level " + str(size))
         source_path = join(maps_path, i)
         # this is jank but we need to get width to GridToTileset
-        maps_id = int(source_path[source_path.rfind("/") + 1 : source_path.rfind(".")])
-        path_to_grid_done = join(dest, str(maps_id + 1))
+        path_to_grid_done = join(dest, str(size))
         if len(listdir(path_to_grid_done)) > 0:
-            print("Already exported")
+            print("Grid already done")
             continue
         width = ImageToGrid(source_path, grid_path)
         folder_path = join(dest, str(size))
