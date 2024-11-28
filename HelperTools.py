@@ -30,7 +30,7 @@ def ImageToTileset(source, dest):
         source_path = join(maps_path, i)
         # this is jank but we need to get width to GridToTileset
         path_to_grid_done = join(dest, str(size))
-        if len(listdir(path_to_grid_done)) > 0:
+        if os.path.exists(path_to_grid_done) and len(listdir(path_to_grid_done)) > 0:
             print("Grid already done")
             continue
         width = ImageToGrid(source_path, grid_path)
